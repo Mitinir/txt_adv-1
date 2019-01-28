@@ -4,27 +4,29 @@ print('Welcome to the world')
 player_name = input('What is your name?:\n')
 
 player = Player(player_name, 'Start Location',  ['sword', 'cookie', 'README note'])
-print('\nyour name is:', player.name)
-print('your current location is:', player.location)
-print('items in your posession are:', player.items)
-answer = input('In front of you is a door, do you open it?')
+print('\nHello,', player.name)
+print('Your current location is:', player.location)
+print('Items in your posession are:', player.items)
+answer = input('In front of you is a door, do you open it? yes/no\n')
 
 if(answer=='yes'):
 	labos = Labos()
-	print(labos.info) #ne printa labos.info jer nije dobro definiran pristup metodi nadklase
+	print(labos.info())
 	player.location = labos.name
-	print('your current location is:', player.location)
-	print('items available in this room are: ', labos.items)
+	print('\nYour current location is:', player.location)
+	print('\nItems available in this room are: ', labos.items)
 
-else:
-	print('are you sure?')
+itemname = input('To take an item, type the name of the item:\n')
 
-itemname = input('to take an item, type the name of the item')
+while itemname!='no':
 
-player.take_item(itemname, player.location) #ne radi jer u txt_adv.py ne pristupa dobro listama kojima treba pristupit
+	player_loc = labos
+	player.take_item(itemname, player_loc) #ne radi jer u txt_adv.py ne pristupa dobro listama kojima treba pristupit
 
-print('your current items are: ', player.items)
-print('current items in the room: ', labos.items)
+	print('\nYour current items are: ', player.items)
+	print('\nCurrent items in the room: ', labos.items)
+	itemname = input('\n If you would like to take another item, type its name. If not, type "no"')
+
 
 
 
