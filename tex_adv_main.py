@@ -21,8 +21,9 @@ itemname = input('To take an item, type the name of the item:\n')
 while itemname!='no':
 
 	player_loc = labos
-	player.take_item(itemname, player_loc) 
-	
+
+	player.take_item(itemname, player_loc) #ne radi jer u txt_adv.py ne pristupa dobro listama kojima treba pristupit
+
 	print('\nYour current items are: ', player.items)
 	print('\nCurrent items in the room: ', labos.items)
 	itemname = input('\n If you would like to take another item, type its name. If not, type "no"')
