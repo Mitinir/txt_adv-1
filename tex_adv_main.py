@@ -22,7 +22,7 @@ while itemname!='no':
 
 	player_loc = labos
 
-	player.take_item(itemname, player_loc) #ne radi jer u txt_adv.py ne pristupa dobro listama kojima treba pristupit
+	player.take_item(itemname, player_loc)
 
 	print('\nYour current items are: ', player.items)
 	print('\nCurrent items in the room: ', labos.items)
