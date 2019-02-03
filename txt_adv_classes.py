@@ -1,5 +1,3 @@
-Instructions = ['TAKE', 'ENTER']
-
 class Room():
 	#base class for rooms
 	def __init__(self, name, description, items):
@@ -23,7 +21,7 @@ class Player():
 		self.location = location
 		self.items = []
 
-# a method for acq of items
+# a method for looting items
 	def take_item (self, item_name, room_name):
 		if(item_name in room_name.items):
 			room_name.items.remove(item_name)

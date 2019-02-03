@@ -1,4 +1,6 @@
-from txt_adv import *
+from txt_adv_classes import *
+from txt_adv_methods import *
+
 
 print('Welcome to the world')
 player_name = input('What is your name?:\n')
@@ -11,22 +13,27 @@ answer = input('In front of you is a door, do you open it? yes/no\n')
 
 if(answer=='yes'):
 	labos = Labos()
-	print(labos.info())
-	player.location = labos.name
-	print('\nYour current location is:', player.location)
-	print('\nItems available in this room are: ', labos.items)
-
-itemname = input('To take an item, type the name of the item:\n')
-
-while itemname!='no':
-
 	player_loc = labos
+#	player.location = type(player_loc).__name__
+	labos.info()
+	print('\nItems available in this room are: ', player_loc.items)
+else:
+	print('fuck you')
 
-	player.take_item(itemname, player_loc)
+
+itemname = input('To take an item, type TAKE and the name of the item. To skip looting type "no"\n')
+instruction, item = input_check(itemname, player_loc)
+
+while instruction!='no':
+	
+	player.take_item(item, player_loc)
 
 	print('\nYour current items are: ', player.items)
-	print('\nCurrent items in the room: ', labos.items)
-	itemname = input('\n If you would like to take another item, type its name. If not, type "no"')
+	print('\nCurrent items in the room: ', player_loc.items)
+	itemname = input('\n If you would like to take another item, type TAKE and the items name. If not, type "no"')
+	instruction, item = input_check(itemname, player_loc)
+
+print('Where do you want to go now?')
 
 
 
