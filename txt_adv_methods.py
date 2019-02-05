@@ -1,11 +1,14 @@
-Instructions = ['TAKE', 'ENTER']  #a list containing KEYWORDS used in the game for commands
-#remainder: set the list to be a dictionary do that the KEYWORD invokes a method by itself
+from txt_adv_classes import *
+
+#Instructions is a dictionary mapping KEYORDS to object methods
+Instructions = { 'TAKE': Player.take_item }
+
 
 #splits user input to extract the KEYWORD which should be located in the list Instructions
 def split_input_KEYWORD(user_input):
 	instruction = user_input.split()[0]
-	while instruction not in Instructions:
-		instruction = input('I do not know of this KEYWORD! Try again please: \n')
+	if instruction not in Instructions:
+		print('Sorry! I do not know of this KEYWORD')
 	return instruction
 
 #splits the user input to extract the ITEM name or command specifics in the future 
@@ -22,15 +25,20 @@ def split_input_ITEM(user_input, current_location):
 		print('You did not specify an item to loot!\n')
 
 #cheks user input if the partials are KEYWORDS or ITEMS that exist 
-def input_check(user_input, current_location):
+def input_check(player_obj, user_input, current_location):
 	if user_input=='no':
-		return 'no', 'no'
+		return 'no'
 	instruction = split_input_KEYWORD(user_input) 
 	item = split_input_ITEM(user_input, current_location)
 
 	while instruction not in Instructions or item not in current_location.items:
-		inst = input('Please enter a valid command!\n')
+		inst = input('Please enter a valid command! Or enter "Q" to quit\n')
+		if inst == 'Q':
+			break
 		instruction = split_input_KEYWORD(inst) 
 		item = split_input_ITEM(inst, current_location)
-	return instruction, item
+
+	Instructions[instruction](player_obj, item, current_location)
+
+	return instruction
 

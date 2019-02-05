@@ -13,25 +13,24 @@ answer = input('In front of you is a door, do you open it? yes/no\n')
 
 if(answer=='yes'):
 	labos = Labos()
-	player_loc = labos
-#	player.location = type(player_loc).__name__
+	player_loc = labos #the palyer_loc container is relative to current position
 	labos.info()
-	print('\nItems available in this room are: ', player_loc.items)
+	print('\nItems available in this room are: ', labos.items)
+	itemname = input('To take an item, type TAKE and the name of the item. To skip looting type "no"\n')
+	instruction = input_check(player, itemname, player_loc)
 else:
 	print('fuck you')
+	exit(1)
 
-
-itemname = input('To take an item, type TAKE and the name of the item. To skip looting type "no"\n')
-instruction, item = input_check(itemname, player_loc)
 
 while instruction!='no':
-	
-	player.take_item(item, player_loc)
+
+	#player.take_item(item, player_loc) - deleted direct method call from main, implemented a dict in methods module
 
 	print('\nYour current items are: ', player.items)
 	print('\nCurrent items in the room: ', player_loc.items)
-	itemname = input('\n If you would like to take another item, type TAKE and the items name. If not, type "no"')
-	instruction, item = input_check(itemname, player_loc)
+	itemname = input(' If you would like to take another item, type TAKE and the items name. If not, type "no"\n')
+	instruction = input_check(player, itemname, player_loc)
 
 print('Where do you want to go now?')
 
