@@ -11,7 +11,7 @@ print('Your current location is:', player.location)
 print('Items in your posession are:', player.items)
 answer = input('In front of you is a door, do you open it? yes/no\n')
 
-if(answer=='yes'):
+if answer.lower() in ('y', 'yes'):
 	labos = Labos()
 	player_loc = labos #the palyer_loc container is relative to current position
 	labos.info()
@@ -23,7 +23,7 @@ else:
 	exit(1)
 
 
-while instruction!='no':
+while instruction.lower() not in ('n', 'no'):
 
 	#player.take_item(item, player_loc) - deleted direct method call from main, implemented a dict in methods module
 
